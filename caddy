@@ -28,6 +28,6 @@ conf="/etc/caddy/caddy.conf"
 sig_stop="QUIT"
 sig_reload="USR2"
 caddy_conf="/etc/caddy/caddy.conf"
-command_args="-f -p ${pidfile} ${procname} -conf=${conf} -http2=true > /var/log/caddy/errornya"
+command_args="-f -p ${pidfile} ${procname} -conf=${conf} -http2=true"
 
 run_rc_command "$1"
