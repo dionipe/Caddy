@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+#
+
+# PROVIDE: caddy
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+#
+# Add the following line to /etc/rc.conf to enable caddyfile:
+# caddy_enable="YES"
+#
+
+. /etc/rc.subr
+
+name="caddy"
+rcvar=caddy_enable
+
+load_rc_config "$name"
+
+: ${caddy_enable="NO"}
+
+#extra_commands="reload logrotate"
+command="/usr/sbin/daemon"
+procname="/usr/sbin/caddy"
+pidfile="/var/run/caddy.pid"
+conf="/etc/caddy/caddy.conf"
+sig_stop="QUIT"
+sig_reload="USR2"
+caddy_conf="/etc/caddy/caddy.conf"
+command_args="-f -p ${pidfile} ${procname} -conf=${conf} -http2=true > /var/log/caddy/errornya"
+
+run_rc_command "$1"
